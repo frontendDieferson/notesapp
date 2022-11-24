@@ -1,0 +1,10 @@
+import harperdb
+
+HARPERDB_PASSWORD = 'YOUR DB PASSWORD'
+HARPERDB_URL = "YOUR DB URL"
+HARPERDB_USERNAME = "YOUR DB USERNAME"
+db = harperdb.HarperDB(
+    url=HARPERDB_URL,
+    username=HARPERDB_USERNAME,
+    password=HARPERDB_PASSWORD
+)
