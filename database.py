@@ -1,8 +1,7 @@
 import harperdb
 
-HARPERDB_PASSWORD = '@0519Dieferson'
-HARPERDB_URL = "https://notesapp-sigmadev.harperdbcloud.com"
-HARPERDB_USERNAME = "notesapp"
+from secret import HARPERDB_PASSWORD, HARPERDB_URL, HARPERDB_USERNAME
+
 db = harperdb.HarperDB(
     url=HARPERDB_URL,
     username=HARPERDB_USERNAME,
