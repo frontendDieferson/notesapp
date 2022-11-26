@@ -4,11 +4,6 @@ from database import db
 
 app = FastAPI()
 
-origins = [
-    "http://localhost/3000",
-    "http://localhost/3000/notes",
-]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -20,38 +15,38 @@ app.add_middleware(
 
 @app.get("/")
 def getRoutes():
-    return ['/notes', '/notes/<ID>']
+    return ['/notes', '/notes/<pk>']
 
 
 @app.get("/notes")
 def getNotes():
-    notes = db.sql('SELECT * FROM notesapp.notes ORDER BY __datetime__ DESC')
+    notes = db.sql('SELECT * FROM notesapp.notes ORDER BY __updatedtime__ DESC')
     # notes = db.search_by_value('notesapp', 'notes', "id", "*", get_attributes=['*'])
     return notes
 
 
-@app.get("/notes/{id}")
-def getNote(id: str):
-    notes = db.search_by_hash('notesapp', 'notes', [id], get_attributes=['*'])
+@app.get("/notes/{pk}")
+def getNote(pk: str):
+    notes = db.search_by_hash('notesapp', 'notes', [pk], get_attributes=['*'])
     return notes[0]
 
 
 @app.post("/notes")
-def addNotes(data=Body()):
+def addNote(data=Body()):
     db.insert('notesapp', 'notes', [{"body": data['body']}])
     notes = db.sql('SELECT * FROM notesapp.notes')
     return notes
 
 
-@app.put("/notes/{id}")
-def updateNote(id: str, data=Body()):
-    note = db.update('notesapp', 'notes', [{"id": id, "body": data["body"]}])
-    notes = db.sql('SELECT * FROM notesapp.notes')
+@app.put("/notes/{pk}")
+def updateNote(pk: str, data=Body()):
+    db.update('notesapp', 'notes', [{"id": pk, "body": data["body"]}])
+    notes = db.search_by_value('notesapp', 'notes', "id", "*", get_attributes=['*'])
     return notes
 
 
-@app.delete("/notes/{id}")
-def deleteNote(id: str):
-    db.delete('notesapp', 'notes', [id])
-    notes = db.sql('SELECT * FROM notesapp.notes')
+@app.delete("/notes/{pk}")
+def deleteNote(pk: str):
+    db.delete('notesapp', 'notes', [pk])
+    notes = db.search_by_value('notesapp', 'notes', "id", "*", get_attributes=['*'])
     return notes

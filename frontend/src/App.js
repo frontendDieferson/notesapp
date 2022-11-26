@@ -12,8 +12,8 @@ function App() {
    <Router>
     <Layout>
       <Routes>
-        <Route path='/' element={<Notes/>} exact />
-        <Route path='/:id' element={<Note/>} />
+        <Route path={'/'} element={<Notes/>} exact />
+        <Route path={'/:id'} element={<Note/>} />
       </Routes>
     </Layout>
    </Router>

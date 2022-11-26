@@ -7,17 +7,18 @@ import { ReactComponent as AddIcon } from '../assets/add.svg'
 
 const Notes = () => {
 
-    const [notes, setNotes] = useState([])
+  let [notes, setNotes] = useState([])
 
     useEffect(() => {
         getNotes()
     }, [])
 
-    const getNotes = async () => {
-        const response = await fetch('/notes')
-        const data = await response.json()
+    let getNotes = async () => {
+      let response = await fetch('/notes')
+      let data = await response.json()
         setNotes(data)
     }
+    
     return(
         <div className='notes'>
       <div className="notes-header">
