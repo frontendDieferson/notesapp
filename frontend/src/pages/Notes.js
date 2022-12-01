@@ -22,7 +22,7 @@ const Notes = () => {
     return(
         <div className='notes'>
       <div className="notes-header">
-        <h2 className="notes-title">&#9782; Notas</h2>
+        <h2 style={{color: '#eb4d4b'}} className="notes-title">&#9782; Notas</h2>
         <p className="notes-count">{notes.length}</p>
       </div>
       
