@@ -19,9 +19,12 @@ Instalação FastAPI e HaperDB
   pip install fastapi
   pip install "uvicorn[standard]"
   pip install harperdb
-
-
 ```
+- Install requirements from requirements.txt
+    ```
+    pip install -r requirements.txt
+    ```
+
 ## Para rodar a aplicação execute
 ```bash
   uvicorn main:app --reload
